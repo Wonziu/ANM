@@ -1,5 +1,5 @@
 \documentclass[a4paper]{article}
-\usepackage[left=1cm,right=1cm,top=3cm,bottom=3cm]{geometry}
+\usepackage[left=2cm,right=2cm,top=3cm,bottom=3cm]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage{amsmath}
 \usepackage{mathtools}
@@ -21,7 +21,7 @@
     
     \vspace{5mm}
 
-    Celem tego sprawozadnie jest przedstawienie metod obliczania pierwiastków wielomianów w postaci
+    Celem tego sprawozdania jest przedstawienie metod obliczania pierwiastków wielomianów w postaci
     \[ax^3 + bx^2 + cx + d = 0 \qquad a, b, c, d \in \mathbb{R}\]
     które pozwalają komputerom na uzyskanie wyników z kontrolowanym błędem. Przedstawię trzy metody numeryczne oraz 
     rozwiązania z użyciem wzorów Cardano. Opiszę ich działadnie i charakterystykę, a następnie umieszczę ich porównanie
@@ -33,6 +33,26 @@
 \newpage
 
 \section{Metoda Newtona}
-
+    Niech $f(x)$ będzie funkcją, której miejsce zerowe chcemy wyznaczyć. Niech $\alpha$ będzie takim zerem, a $x$
+    jego przybliżeniem. Z twierdzenia Taylora, wiemy, że przybliżenie funkcji $f$, możemy zapisać w postaci:
+    \[
+        0 = f(\alpha) = f(x + e) = f(x) + ef'(x) + \frac{f''(\xi)}{2!}e^2 \qquad \xi \in \text{interv}(x, \alpha) 
+    \tag{1}\]
+    Jeśli nasz wyraz $\frac{f''(\xi)}{2!}e^2$ będzie dostatecznie mały, to możemy go pominąć i rozwiązać równanie 
+    względem $e$, co daje nam:
+    \[
+        e = \frac{-f(x)}{f'(x)}  
+    \]
+    Jeśli $x$ jest dostatecznie dobrym przybliżeniem $\alpha$, to $x - e$ będzie jeszcze lepszym przybliżeniem tego
+    pierwiastka. Na tej różnicy opiera się metoda Newtona, która po wybraniu startowego przybliżenia $x_0$ zera $\alpha$
+    polega na stosowaniu rekurencyjnego wzoru:
+    \[
+        x_{n+1} = x_n - \frac{f(x)}{f'(x)} \qquad n \geq 0
+    \tag{2}\]
+    Dobranie startowego punktu $x_0$ w tej metodzie jest bardzo istotne, gdyż metoda Newtona nie zawsze jest zbieżna.
+    Jeśli dobierzemy odpowiednio punkt początkowy, to będziemy mieli zbieżność kwadratową (z wyjątkiem przypadków, gdy 
+    istnieją wielokrotne zera funkcji. Wtedy otrzymamy zbieżność liniową).
+    \vspace{5mm}
+    Metoda Newtona.
 
 \end{document}
