@@ -8,7 +8,12 @@
 \usepackage{graphicx}
 \usepackage{algorithm}
 \usepackage{algorithmic}
+\usepackage{amsthm}
+
 \graphicspath{ {./images/} }
+\newtheorem{theorem}{Theorem}
+\let\conjugate\overline
+
 
 \title{\textbf{Pracownia z Analizy Numerycznej}\\{\Large Sprawozdanie do zadania P1.7}}
 \author{Mateusz Leonowicz}
@@ -57,13 +62,13 @@
     \tag{2}\]
 
     Dobranie startowego punktu $x_0$ w tej metodzie jest bardzo istotne, gdyż metoda Newtona nie zawsze jest zbieżna.
-    Jeśli dobierzemy odpowiednio punkt początkowy, to będziemy mieli zbieżność kwadratową (z wyjątkiem przypadków, gdy 
-    istnieją wielokrotne zera funkcji. Wtedy otrzymamy zbieżność liniową).
+    Jeśli dobierzemy odpowiednio punkt początkowy będziemy mieli zbieżność kwadratową, z wyjątkiem przypadków, gdy 
+    istnieją wielokrotne zera funkcji. Wtedy otrzymamy zbieżność liniową.
 
     \vspace{5mm}
 
     Metoda Newtona opiera się na linearyzacji funkcji $f$, co pozwala nam na dobre przybliżanie wartości funkcji w małym
-    otoczeniu punktu $x$. Możemy więc, rozumieć tę metodę, jako przybliżanie miejsc zerowych funkcji, za pomocą jej stycznych,
+    otoczeniu punktu $x$. Możemy więc rozumieć tę metodę, jako przybliżanie miejsc zerowych funkcji za pomocą jej stycznych,
     co oczywiście niesie za sobą groźbę rozbieżności.
 
     \vspace{10mm}
@@ -106,10 +111,9 @@
 
     Algorytm uwzględnia trzy kryteria zakończenia obliczeń, ponieważ inaczej istniałoby
     ryzyko zapętlenia. Pierwszym jest oczywiście znalezienie takiego punkt $c$, że $f(c) = 0$. Drugim z nich jest 
-    skończona liczba iteracji, wyrażona zmienną $M$. Oprócz tego, obliczenia są przerywane, 
-    jeżeli błąd jest dostatecznie mały, tj. mniejszy od $\epsilon$. Łatwo znaleźć przykłady funkcji, w których,
-    brak któregoś z kryterów mógłby prowadzić do bardzo błędnych wyników. Dodatkowo metoda ta, daje zbieżność liniową,
-    więc stanowi ona raczej ciekawostkę, aniżeli wartościową metodę numeryczną szukania pierwiastków.
+    skończona liczba iteracji wyrażona zmienną $M$. Oprócz tego, obliczenia są przerywane, 
+    jeżeli błąd jest dostatecznie mały, tj. mniejszy od $\epsilon$. Łatwo znaleźć przykłady funkcji w których
+    brak któregoś z kryterów mógłby prowadzić do bardzo błędnych wyników.
 
     \begin{figure}[h]
         \centering
@@ -118,6 +122,47 @@
     \end{figure}
 
 \newpage
+\section{Metoda Bairstowa}
+    Wymienione metody do tej pory, oprócz oczywistych problemów z wybraniem początkowych wyrazów, czy niejednolitą zbieżnością, mają
+    jedną o wiele poważniejszą dla nas wadę. W ich akutalnej postaci, jeśli nasza funkcja $f$ będzie miała pierwiastki zespolone, to
+    ich nie wyznaczymy. Do tego potrzebujemy bardziej zaawansowanego i ogólnego algorytmu. Najpierw przedstawię 
+    kilka letmatów, które przydadzą się do wyprowadzenia metody Bairstowa.
+    \begin{theorem}
+        Jeśli wielomian $w(x)$ stopnia $n \in \mathbb{N}$ ma współczynniki 
+        $a_i \in \mathbb{R},\ 0 \leq i \leq n$, oraz $\alpha \in \mathbb{C} \setminus \mathbb{R}$ jest jego 
+        miejscem zerowym, to $\conjugate{\alpha}$ też jest jego miejscem zerowym, a iloczyn
+        kwadratowy $(x - \alpha)(x - \conjugate{\alpha})$ dzieli bez reszty wielomian $w(x)$.
+    \end{theorem}
+    \begin{proof}
+        Mamy wielomian $w(x) = a_{n}x^n + a_{n-1}x^{n-1} + \ldots + a_{0}x^0$, oraz z założenia wiemy, że
+        $w(\alpha) = 0$. Korzystając z dwóch własności sprzężenia $\conjugate{x + y} = \conjugate{x} + \conjugate{y}$,
+        ${\conjugate{xy} = \conjugate{x}\conjugate{y}}$ otrzymujemy wprost równość: $w(\conjugate{\alpha})$. Ponieważ
+        $\alpha$ jest pierwiastkiem nierzeczywistym, to $\alpha \neq \conjugate{\alpha}$. Z twierdzenia o reszcie, wynika, że
+        iloczyn $(x - \alpha)(x - \conjugate{\alpha})$ dzieli nasz wielomian bez reszty.
+    \end{proof}
+
+    \begin{theorem}
+        Dzielenie wielomianu 
+        \[
+            w(x) = a_{n}x^n + a_{n-1}x^{n-1} + \ldots + a_{0}x^0
+        \]
+        Przez wielomian w postaci $(x^2 - ux - v) \ \ u,v \in \mathbb{C}$ daje iloraz i resztę równe:
+        \[
+            \begin{array}{c}
+                \phi(x) = b_{n}x^{n-2} + b_{n-1}x^{n-3} + \ldots + b_{2}x^0 \\
+                r(x) = b_{1}(z - u) + b_{0}
+            \end{array}
+        \]
+        Których współczynniki dane są rekurencyjnym wzorem:
+        \[
+            b_{n+1} = b_{n+2} = 0, \qquad b_k = a_k + ub{k+1} + vb{k+2} \qquad (n \leq k \leq 0).  
+        \]
+        Dowód jest dość prosty i polega na porównaniu współczynników po obu stronach równania:
+        \[
+            w(x) = \phi(x)(x^2 - ux - v) + r(x)  
+        \]
+
+    \end{theorem}
 
 
 \end{document}
