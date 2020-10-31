@@ -70,7 +70,7 @@
 
     \begin{figure}[h]
         \centering
-        \includegraphics[width=13cm]{newtonPlot}
+        \includegraphics[width=12cm]{newtonPlot}
         \caption{Interpretacja geometryczna metody Netwona}
     \end{figure}
 
@@ -91,7 +91,7 @@
         \WHILE{$n < M$}
         \STATE $c = \frac{left + right}{2}$
         \IF{$f(c) = 0 \vee \lvert left - right \lvert < \epsilon$}
-        \STATE $\text{Pierwiastkiem jest}\ x_1$
+        \STATE $\text{pierwiastkiem jest}\ c$
         \ELSE
         \STATE $n \leftarrow n + 1$
         \ENDIF
@@ -111,5 +111,12 @@
     brak któregoś z kryterów mógłby prowadzić do bardzo błędnych wyników. Dodatkowo metoda ta, daje zbieżność liniową,
     więc stanowi ona raczej ciekawostkę, aniżeli wartościową metodę numeryczną szukania pierwiastków.
 
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=12cm]{bisectionPlot}
+        \caption{Interpretacja geometryczna metody bisekcji}
+    \end{figure}
+
+\newpage
 
 \end{document}
