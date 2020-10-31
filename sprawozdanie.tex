@@ -128,6 +128,10 @@
     ich nie wyznaczymy. Do tego potrzebujemy bardziej zaawansowanego i ogólnego algorytmu. Najpierw przedstawię 
     kilka letmatów, które przydadzą się do wyprowadzenia metody Bairstowa.
     \begin{theorem}
+        Wielomian stopnia n ma dokładnie n pierwiastków w przestrzeni zespolonej, gdy każdy z nich liczony jest tyle razy, ile wynosi jego krotność.
+    \end{theorem}
+    
+    \begin{theorem}
         Jeśli wielomian $w(x)$ stopnia $n \in \mathbb{N}$ ma współczynniki 
         $a_i \in \mathbb{R},\ 0 \leq i \leq n$, oraz $\alpha \in \mathbb{C} \setminus \mathbb{R}$ jest jego 
         miejscem zerowym, to $\conjugate{\alpha}$ też jest jego miejscem zerowym, a iloczyn
@@ -155,14 +159,43 @@
         \]
         Których współczynniki dane są rekurencyjnym wzorem:
         \[
-            b_{n+1} = b_{n+2} = 0, \qquad b_k = a_k + ub{k+1} + vb{k+2} \qquad (n \leq k \leq 0).  
-        \]
+            b_{n+1} = b_{n+2} = 0, \qquad b_k = a_k + ub_{k+1} + vb_{k+2} \qquad (n \leq k \leq 0).  
+        \tag{3}\]
         Dowód jest dość prosty i polega na porównaniu współczynników po obu stronach równania:
         \[
             w(x) = \phi(x)(x^2 - ux - v) + r(x)  
         \]
-
     \end{theorem}
 
+    Dla każdego wielomianu $w$ stopnia $n \leq 2$ znajdziemy więc takie $u$ i $v$, że nasz wielomian $(x^2 - ux -v)$ będzie dzielił
+    $w$ bez reszty. Na szukaniu tych rzeczywistych czynników opiera się metoda Bairstowa. W $r(x)$ nasze współczynniki $b_0$ i $b_1$
+    zależą od $u$ i $v$, więc zapiszmy:
+    \[
+        b_0(u, v) = 0 \qquad b_1(u, v) = 0  
+    \]
+    Są to równania nieliniowe, dwuargumentowe. Szukamy więc takich poprawek oznaczonych $\delta u$ i $\delta v$, które spełniałyby równanie:
+    \[
+        b_0(u + \delta u, v + \delta v) = b_1(u + \delta u, v + \delta v) = 0  
+    \]
+    Z twierdzenia Taylora możemy zlinearyzować jedną z powyższych równości, co daje:
+    \[
+        \begin{array}{c}
+            b_0(u, v) + \frac{\partial b_0}{\partial u}\delta u + \frac{\partial b_0}{\partial v}\delta v = 0  \\\\
+            b_1(u, v) + \frac{\partial b_1}{\partial u}\delta u + \frac{\partial b_1}{\partial v}\delta v = 0  
+        \end{array}
+    \tag{4}\]
+    Zdefiniujmy więc wyrazy pomocnicze, które oczywiście spełniają rekurencyjną zależność z (3):
+    \[
+        c_k = \frac{\partial b_k}{\partial u} \qquad d_k = \frac{\partial b_{k-1}}{\partial v} \qquad (0 \leq k \leq n) 
+    \]
+    Podstawiając do równań z (4) i uzależniając równania od $\delta v$ i $\delta u$ otrzymujemy:
+    \[
+        \begin{array}{c}
+            \delta u = (c_1b_1 - c_2b_0)\frac{1}{J} \\\\
+            \delta v = (c_1b_0 - c_0b_1)\frac{1}{J} \\\\
+            J = c_0c_2 - c_1^2
+        \end{array}
+    \]
+    Otrzymaliśmy więc wzór na lepsze przybliżenie naszej pary $(u, v)$.
 
 \end{document}
