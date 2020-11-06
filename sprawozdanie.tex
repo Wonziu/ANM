@@ -122,6 +122,67 @@
     \end{figure}
 
 \newpage
+\section{Wzory Cardano}
+    Do rozwiązywania takich problemów w przypadku wielomianów 3 stopnia posłużyć również mogą wzory dające nam wprost
+    pierwiastki funkcji. Wzory Cardano są dość skomplikowane matematyczne, ale są proste do wyprowadzenia i udowodnienia,
+    dlatego przedstawię krótki opis. Niech $f$ będzie wielomianem 3 stopnia:
+    \[
+        f(x) = ax^3 + bx^2 + cx + d
+    \]
+    wtedy możemy przekształcić naszą funkcję $f$ do alternatywnej postaci
+    \[
+        \begin{array}{c}
+            g(y) = y^3 + Qy - 2R \\ \\
+            y = x + \frac{b}{3a }, \ Q = \frac{3ac - b^2}{9a^2}, \ R = \frac{9abc - 27a^d - 2b^3}{54a^3} 
+        \end{array}
+    \]
+    Teraz, niech $y = (u + v)$, gdzie $uv = -Q$. Przekształcając otrzymujemy nową postać naszej funkcji.
+    \[
+        g(u + v) = u^6 - 2Ru^3 - Q^3
+    \]
+    Widzimy, że otrzymujemy funkcję kwadratową względem $u^3$, więc dostajemy równości:
+    \[
+        u^3 = \frac{2R \pm \sqrt{4Q^3 + 4R^2}}{2} = R \pm \sqrt{Q^3 + R^2}
+    \]
+    Niech $u^3 = R + \sqrt{Q^3 + R^2}$. Mamy wtedy:
+    \[
+        v^3 = -\frac{Q^3}{u^3} = R - \sqrt{Q^3 + R^2}
+    \]
+    Jeśli weźmiemy $u^3 = R - \sqrt{Q^3 + R^2}$, to analogicznie otrzymamy $v^3 = R + \sqrt{Q^3 + R^2}$. 
+    Bez straty ogólności przyjmijmy, że
+    \[
+        \begin{array}{c}
+            S = \sqrt[3]{u^3} = \sqrt[3]{R + \sqrt{Q^3 + R^2}} \\
+            T = \sqrt[3]{v^3} = \sqrt[3]{R - \sqrt{Q^3 + R^2}}
+        \end{array}
+    \]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    wtedy pierwiastki zespolone $x_1, x_2, x_3$ równe są:
+    
+    \[
+        \begin{array}{c}
+            x_0 =     
+        \end{array}
+    \]
+
+\newpage
 \section{Metoda Bairstowa}
     Wymienione metody do tej pory, oprócz oczywistych problemów z wybraniem początkowych wyrazów, czy niejednolitą zbieżnością, mają
     jedną o wiele poważniejszą dla nas wadę. W ich akutalnej postaci, jeśli nasza funkcja $f$ będzie miała pierwiastki zespolone, to
