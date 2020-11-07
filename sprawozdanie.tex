@@ -122,67 +122,6 @@
     \end{figure}
 
 \newpage
-\section{Wzory Cardano}
-    Do rozwiązywania takich problemów w przypadku wielomianów 3 stopnia posłużyć również mogą wzory dające nam wprost
-    pierwiastki funkcji. Wzory Cardano są dość skomplikowane matematyczne, ale są proste do wyprowadzenia i udowodnienia,
-    dlatego przedstawię krótki opis. Niech $f$ będzie wielomianem 3 stopnia:
-    \[
-        f(x) = ax^3 + bx^2 + cx + d
-    \]
-    wtedy możemy przekształcić naszą funkcję $f$ do alternatywnej postaci
-    \[
-        \begin{array}{c}
-            g(y) = y^3 + Qy - 2R \\ \\
-            y = x + \frac{b}{3a }, \ Q = \frac{3ac - b^2}{9a^2}, \ R = \frac{9abc - 27a^d - 2b^3}{54a^3} 
-        \end{array}
-    \]
-    Teraz, niech $y = (u + v)$, gdzie $uv = -Q$. Przekształcając otrzymujemy nową postać naszej funkcji.
-    \[
-        g(u + v) = u^6 - 2Ru^3 - Q^3
-    \]
-    Widzimy, że otrzymujemy funkcję kwadratową względem $u^3$, więc dostajemy równości:
-    \[
-        u^3 = \frac{2R \pm \sqrt{4Q^3 + 4R^2}}{2} = R \pm \sqrt{Q^3 + R^2}
-    \]
-    Niech $u^3 = R + \sqrt{Q^3 + R^2}$. Mamy wtedy:
-    \[
-        v^3 = -\frac{Q^3}{u^3} = R - \sqrt{Q^3 + R^2}
-    \]
-    Jeśli weźmiemy $u^3 = R - \sqrt{Q^3 + R^2}$, to analogicznie otrzymamy $v^3 = R + \sqrt{Q^3 + R^2}$. 
-    Bez straty ogólności przyjmijmy, że
-    \[
-        \begin{array}{c}
-            S = \sqrt[3]{u^3} = \sqrt[3]{R + \sqrt{Q^3 + R^2}} \\
-            T = \sqrt[3]{v^3} = \sqrt[3]{R - \sqrt{Q^3 + R^2}}
-        \end{array}
-    \]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    wtedy pierwiastki zespolone $x_1, x_2, x_3$ równe są:
-    
-    \[
-        \begin{array}{c}
-            x_0 =     
-        \end{array}
-    \]
-
-\newpage
 \section{Metoda Bairstowa}
     Wymienione metody do tej pory, oprócz oczywistych problemów z wybraniem początkowych wyrazów, czy niejednolitą zbieżnością, mają
     jedną o wiele poważniejszą dla nas wadę. W ich akutalnej postaci, jeśli nasza funkcja $f$ będzie miała pierwiastki zespolone, to
@@ -258,5 +197,168 @@
         \end{array}
     \]
     Otrzymaliśmy więc wzór na lepsze przybliżenie naszej pary $(u, v)$.
+
+\newpage
+\section{Wzory Cardano}
+    Do rozwiązywania takich problemów w przypadku wielomianów 3 stopnia posłużyć również mogą wzory dające nam wprost
+    pierwiastki funkcji. Wzory Cardano są dość skomplikowane matematyczne, ale są proste do wyprowadzenia i udowodnienia,
+    dlatego przedstawię krótki opis. Niech $f$ będzie wielomianem 3 stopnia:
+    \[
+        f(x) = ax^3 + bx^2 + cx + d
+    \]
+    wtedy możemy przekształcić naszą funkcję $f$ do alternatywnej postaci
+    \[
+        \begin{array}{c}
+            g(y) = y^3 + Qy - 2R \\ \\
+            y = x + \frac{b}{3a }, \ Q = \frac{3ac - b^2}{9a^2}, \ R = \frac{9abc - 27a^2d - 2b^3}{54a^3} 
+        \end{array}
+    \]
+    Teraz, niech $y = (u + v)$, gdzie $uv = -Q$. Przekształcając otrzymujemy nową postać naszej funkcji.
+    \[
+        g(u + v) = u^6 - 2Ru^3 - Q^3
+    \]
+    Widzimy, że otrzymujemy funkcję kwadratową względem $u^3$, więc dostajemy równości:
+    \[
+        u^3 = \frac{2R \pm \sqrt{4Q^3 + 4R^2}}{2} = R \pm \sqrt{Q^3 + R^2}
+    \]
+    Niech $u^3 = R + \sqrt{Q^3 + R^2}$. Mamy wtedy:
+    \[
+        v^3 = -\frac{Q^3}{u^3} = R - \sqrt{Q^3 + R^2}
+    \]
+    Jeśli weźmiemy $u^3 = R - \sqrt{Q^3 + R^2}$, to analogicznie otrzymamy $v^3 = R + \sqrt{Q^3 + R^2}$. 
+    Bez straty ogólności przyjmijmy, że
+    \[
+        \begin{array}{c}
+            S = \sqrt[3]{u^3} = \sqrt[3]{R + \sqrt{Q^3 + R^2}} \\
+            T = \sqrt[3]{v^3} = \sqrt[3]{R - \sqrt{Q^3 + R^2}}
+        \end{array}
+    \]
+    Wtedy istnieje oczywiście 9 kombinacji dla wartości $v, u$, ale tylko 3 z nich pasują do naszych
+    warunków. Są to 
+    \[
+        \begin{array}{c}
+            u = S \land v = T \\
+            u = (-\frac{1}{2} + \frac{i\sqrt{3}}{2})S \land v = (-\frac{1}{2} - \frac{i\sqrt{3}}{2})T \\
+            u = (-\frac{1}{2} - \frac{i\sqrt{3}}{2})S \land v = (-\frac{1}{2} + \frac{i\sqrt{3}}{2})T
+        \end{array}
+    \]
+    Nasze pierwiastki zespolone $x_0, x_1, x_2$ równe więc są:
+    \[
+        \begin{array}{c}
+            x_0 = S + T - \frac{b}{3a} \\
+            x_1 = -\frac{S + T}{2} - \frac{b}{3a} + \frac{i\sqrt{3}}{2}(S - T) \\
+            x_2 = -\frac{S + T}{2} - \frac{b}{3a} - \frac{i\sqrt{3}}{2}(S - T)
+        \end{array}
+    \]
+
+    Wzory te dają nam pierwiastki wielomianu najszybciej, ale może się okazać, że proste operacje arytmetyczne,
+    które wykonywane są po drodze bardzo wpłyną na nasz wynik dają przekłamane zera. Głównie problemem okazać się 
+    może utrata cyfr znaczących przy odejmowaniu dwóch bliskich sobie liczb.
+
+\newpage
+\section{Testy numeryczne}
+    Tę sekcję poświęcę na porównanie opisanych przeze mnie metod poprzez zestawienie ze sobą wyników zbieżnością
+    do pierwiastków wybranych przeze mnie wielomianów 3-go stopnia. Metodę biskecji potraktuję raczej jako ciekawostkę
+    i umieszczę ją tylko w pierwszych testach, ponieważ sam problem doboru przedziału dyskwalifikuje ją jako 
+    efektywną metodę.
+
+    \vspace{5mm}
+
+    \subsection{Dobór przybliżenia pierwiastka}
+    Dla metody Newtona będę stosował algorytm do wybierania pierwszego przybliżenia pierwiastka. Polega 
+    on na rozpoznaniu, czy pierwiastek rzeczywisty funkcji leży między zerami jej pochodnej, czy poza nimi. Niech
+    $f$ będzie wielomianem 3-go stopnia i niech $f'$ będzie jego pochodną. Jeśli $f'$ ma pierwiastki rzeczywiste,
+    to niech będą to $x_1 \leq x_2$. Sprawdźmy więc, czy funkcja zmienia znak poza zerami pochodnej. Jeżeli
+    \[
+        sgn(x_1 - \frac{1}{2}) = sgn(a)  
+    \]
+    to nasze pierwsze przybliżenie będzie równe $x_1 - \frac{1}{2}$. Jeśli ten warunek nie zachodzi, to 
+    sprawdzamy analogicznie dla punktu $x_2 + \frac{1}{2}$. Jeśli funkcja nie zmienia znaku poza tymi punktami, 
+    to wybieramy dowolnie punkt między zerami pochodnej.
+
+    Jeśli nasza pochodna nie pierwiastków rzeczywistych, to pozostaje nam dobrać punkt startowy arbitralnie.
+
+    \vspace{5mm}
+        
+    Przez C. z. oznaczam liczbe cyfr znaczących, a $e(x)$ oznacza błąd bezwzględny przybliżenia pierwiastka.
+
+    \newpage
+    \subsection{Test 1}
+    Prosta funkcja przykładowa, aby zaprezentować sposób prezentacji danych oraz kryteria porównawcze.
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=8cm]{1}
+        \caption{$f(x) = x^3 - 2x^2 - 8x$}
+    \end{figure}
+    
+    \begin{center}
+        Metoda Newtona
+    \end{center}
+    \begin{center}
+        \begin{tabular}{|c|c|c|c|c|c|} 
+            \hline
+            Iteracja & $x_0$ & $f(x_0)$ & C.z. $x_0$ & C.z. $x_1$ & C.z. $x_2$ \\
+            \hline
+            1 & 87.40256216597504 & 683055.1593426905 & 0 & 0 & 0 \\
+            \hline
+            5 & 3.9999999999999987 & -2.486899575160354e-14 & 14 & 14 & 14 \\
+            \hline
+            10 & 3.9999999999999987 & -2.486899575160354e-14 & 14 & 14 & 14 \\
+            \hline
+        \end{tabular}
+    \end{center}
+        
+    \vspace{5mm}
+
+    \begin{center}
+        Metoda Bisekcji
+    \end{center}
+    \begin{center}
+        \begin{tabular}{|c|c|c|c|c|c|} 
+            \hline
+            Iteracja & $x_0$ & $f(x_0)$ & C.z. $x_0$ & C.z. $x_1$ & C.z. $x_2$ \\
+            \hline
+            1 & 2.500000 & -8.125000 & 0 & 0 & 0 \\
+            \hline
+            5 & 4.531250 & 15.722198 & 1 & 0 & 0 \\
+            \hline
+            10 & 4.018555 & 0.448762 & 2 & 2 & 2 \\
+            \hline
+            15 & 3.999481 & -0.012448 & 3 & 3 & 3 \\
+            \hline
+            20 & 3.999982 & -0.000435 & 5 & 5 & 5 \\
+            \hline
+        \end{tabular}
+    \end{center}
+    
+    \vspace{5mm}
+
+    \begin{center}
+        Metoda Bairstowa
+    \end{center}
+    \begin{center}
+        \begin{tabular}{|c|c|c|c|c|c|} 
+            \hline
+            Iteracja & $x_0$ & $f(x_0)$ & C.z. $x_0$ & C.z. $x_1$ & C.z. $x_2$ \\
+            \hline
+            1 & -3.14625657737552 & -25.77238332178403 & 0 & 0 & 0 \\ 
+            \hline
+            5 & -1.5183794715 - 2.1659587805i & 34.78812403 - 0.6466883761i & 0 & 2 & 0 \\ 
+            \hline
+            10 & -2.0 & 0.0 & 20 & 20 & 20 \\
+            \hline
+            15 & -2.0 & 0.0 & 20 & 20 & 20 \\
+            \hline
+        \end{tabular}
+    \end{center}
+
+    \vspace{5mm}
+
+    \begin{center}
+        Błędy bezwzględne dla wzorów Cardano:
+        \[
+            e(x_0) = 0 \qquad e(x_1) = 0 \qquad e(x_2) = 0  
+        \]
+    \end{center}
 
 \end{document}
