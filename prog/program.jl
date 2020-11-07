@@ -1,5 +1,5 @@
 using Plots
-using printf
+using Printf
 
 # WSZYSTKIE FUNKCJE, KTÓRYCH UŻYŁEM DO WYKONANIA OBLICZEŃ
 
