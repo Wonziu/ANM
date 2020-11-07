@@ -260,11 +260,27 @@
     Tę sekcję poświęcę na porównanie opisanych przeze mnie metod poprzez zestawienie ze sobą wyników zbieżnością
     do pierwiastków wybranych przeze mnie wielomianów 3-go stopnia. Metodę biskecji potraktuję raczej jako ciekawostkę
     i umieszczę ją tylko w pierwszych testach, ponieważ sam problem doboru przedziału dyskwalifikuje ją jako 
-    efektywną metodę.
+    efektywną metodę. Dodatkowo, po zakończeniu algorytmów metod biskecji i Newtona z uzyskanego pierwiastka
+    obliczam dwa pozostałe dzieląc mój początkowy wielomian przez otrzymane przybliżenie.
+
+    Najpierw przedstwię wynki wszystkich stworzonych przeze mnie różnorodnych testów, które dają dość obiektywny 
+    pogląd na efektywność algorytmów. W testach znajdować się będą tabelki dla każdej metody, w których umieszczę przybliżenie
+    mojego głównego pierwiastka i wartość funkcji w tym punkcie. Dodatkowo dla interesujących iteracji dodam ilość cyfr znaczących
+    każdego przybliżenia.
+
+    Następnie wszystko podsumuję w sekcji umieszczonej po testach, w której wyciągnę wnioski z uzyskanych wyników. 
+    Tam również znajdzie się odpowiedź do naszego zadania, oraz jej uzasadnienie.
 
     \vspace{5mm}
 
-    \subsection{Dobór przybliżenia pierwiastka}
+    Wszystkie obliczenia oraz dodatkowe wykresy umieściłem w jupyterze, w którym zaimplementowana jest całość kodu
+    wraz z opisami. Do obliczeń używam 128-bitowej precyzji oraz wyłącznie poprawnie numerycznych algorytmów.
+
+    \vspace{5mm}
+        
+    Przez C. z. oznaczam liczbe cyfr znaczących, a $e(x)$ oznacza błąd bezwzględny przybliżenia pierwiastka.
+
+    \subsection{Dobór przybliżenia pierwszego pierwiastka}
     Dla metody Newtona będę stosował algorytm do wybierania pierwszego przybliżenia pierwiastka. Polega 
     on na rozpoznaniu, czy pierwiastek rzeczywisty funkcji leży między zerami jej pochodnej, czy poza nimi. Niech
     $f$ będzie wielomianem 3-go stopnia i niech $f'$ będzie jego pochodną. Jeśli $f'$ ma pierwiastki rzeczywiste,
@@ -274,13 +290,8 @@
     \]
     to nasze pierwsze przybliżenie będzie równe $x_1 - \frac{1}{2}$. Jeśli ten warunek nie zachodzi, to 
     sprawdzamy analogicznie dla punktu $x_2 + \frac{1}{2}$. Jeśli funkcja nie zmienia znaku poza tymi punktami, 
-    to wybieramy dowolnie punkt między zerami pochodnej.
-
-    Jeśli nasza pochodna nie ma pierwiastków rzeczywistych, to pozostaje nam dobrać punkt startowy arbitralnie.
-
-    \vspace{5mm}
-        
-    Przez C. z. oznaczam liczbe cyfr znaczących, a $e(x)$ oznacza błąd bezwzględny przybliżenia pierwiastka.
+    to wybieramy dowolnie punkt między zerami pochodnej. Jeśli nasza pochodna nie ma pierwiastków rzeczywistych, 
+    to pozostaje nam dobrać punkt startowy arbitralnie.
 
 \newpage
 \subsection{Test 1}
@@ -507,7 +518,7 @@
             \hline
             10 & -71.99999999999976 & 2.7679476488628924e-9 & 13 & 3 & 3 \\
             \hline
-            20 & -72.0 & 0.0 & inf+ & 6 & 6 \\
+            20 & -72.0 & 0.0 & inf+ & inf+ & inf+ \\
             \hline
         \end{tabular}
     \end{center}
@@ -566,6 +577,8 @@
             15 & 0.10000018685790094 & 1.8685859924824825e-9 & 7 & inf+ & 3 \\
             \hline
             25 & 0.10000000000000013 & 1.2490009027033043e-18 & 15 & inf+ & 6 \\
+            \hline
+            40 & 0.1 & 0 & +inf & inf+ & 11 \\
             \hline
         \end{tabular}
     \end{center}
@@ -716,6 +729,59 @@ Funkcja, dla której ciężko wybrać właściwe początkowe przybliżenie pierw
         \[
             e(x_0) = 1.3766765505351941e-14 \qquad e(x_1) = 9.90189642062563e-15 \qquad e(x_2) = 9.90189642062563e-15
         \]
-    \end{center}   
+    \end{center}
+    
+\newpage
+\section{Wnioski i podsumowanie}
+    \subsection{Metoda bisekcji}
+        Metoda ta w żadnym teście nie uzyksała nawet 8 cyfr znaczących dla każdego pierwiastka, nawet
+        pomimo tego, że ręcznie podałem jej dość mały początkowy przedział. Miało to zobrazować, dlaczego
+        metoda ta nie jest zbyt użytecznym sposobem na wyliczanie pierwiastków wielomianu 3-go stopnia.
+        Dodatkowo zera funkcji wolno zbiegają i średnio potrzebowały conajmniej 15 iteracji, aby uzyskać
+        nawet słabe przybliżenia zer funkcji. Mimo to jest prosta w aplikacji i zrozumienia, więc może stanowić
+        dobre tło dla innych metod.
+        
+    \subsection{Metoda Newtona}
+        Metoda Newtona dużo lepiej radziła sobie ze znajdywaniem zer naszych funkcji w większości przypadków.
+        W każdym teście metoda w najwyżej 20 iteracjach znajdywała bardzo dobre przybliżenia zer. Wyjątkiem był Test 6,
+        w którym wyznaczone początkowe $x_0$ było bardzo nietrafione, co spowodowało, że metoda przez ponad 40 iteracji nawet
+        nie zbliżała się do szukanej wartości. Jest to wynik bardzo niezadowalający nawet pomimo tego, że finalnie udało
+        jej się to zero znaleźć. Musimy pamiętać jednak, że istnieją funkcje, dla których ta metoda nigdy nie będzie 
+        zbiegać do miejsc zerowych funkcji, co oczywiście może mieć przykre konsekwencje przy rozwiązywaniu różnych problemów.
+        
+        Metoda ta więc może być przydatna tylko, jeśli znamy jakieś właności funkcji pozwalające określić punkt startowy,
+        lub jeśli znamy same przybliżenia. W takim wypadku metoda jest jak najbardziej prawidłowa. Dla naszego problemu
+        jednak, ten algorytm nie może być uznany jako numerycznie efektywny.
+    \subsection{Wzory Cardano}
+        Korzystanie ze wzorów Cardano jest oczywiście najszybszym sposobem na uzyskanie pierwiastków wielomianu, ponieważ
+        polega na przeprowadzeniu konkretnej ilości, chociaż dość sporej, operacji arytmetycznych. Uzyskane wyniki są
+        wyjątkowo dobrymi przybliżeniami naszych pierwiastków niemal w każdym przypadku i najczęściej błąd bezwzględny
+        tych wartości jest zaniedbywalny. Istnieją jednak funkcje, których współczynniki mogą niestety dać przekłamane
+        (choć nieznaczne) zera. Wtedy nasz błąd zwiększa się do rzędu $e-5$, a być może nawet więcej. Uważać więc trzeba,
+        aby nasze wykonywane operacje nie obejmowały odejmowania dwóch bardzo bliskich liczb, gdyż może to prowadzić
+        (zwłaszcza gdy używamy mniejszej precyzji bitowej) do błędnych wyników. Mimo tego, wzory Cardano są efektywnym
+        sposobem na wyznaczanie pierwiastków wielomianów 3-go stopnia.
+    \subsection{Metoda Bairstowa}
+        Metoda Bairstowa była zdecydowanie najlepszą metodą do wyznaczanie pierwiastków wielomianów 3-go stopnia. Jest
+        ona zbieżnie w każdym przypadku i nierzadko potrzeba niewielkiej ilośći iteracji, aby uzyskać bardzo satysfakcjonujące
+        wyniki. Możemy oczywiście przeprowadzać dalsze iteracje, aby zwiększyć dokładność naszych zer, oczywiście z pewnym, ale sporym
+        górnym ograniczeniem. Dodatkowo wybór dwóch startowych wartości, mimo że zmienia prędkość zbieżności, a czasem i błąd bezwzględny
+        przybliżeń, nie jest problemem, gdyż bardzo łatwo je określić i dopasować do potrzeb zadania.
+
+    \subsection{Podsumowanie}
+        Z wybranch przeze mnie metod wyznaczania zer wielomianu 3-go stopnia najlepsza jest metoda Bairstowa, która
+        ma wysoką zbieżność oraz wysoki poziom bezpieczeństwa przy uzysykiwaniu przybliżeń zer funkcji. 
+        Być może udałoby się skonstruować bardziej konkretny sposób dla konkretynch zer funkcji, lecz byłoby to problematyczne
+        w identyfikacji i implementacji. Dlatego to właśnie metodę Bairstowa zaproponowałbym jako sposób na 
+        efektywne wyznaczanie zer funkcji takich wielomianów.
+        
+\begin{thebibliography}{9}
+    \bibitem{Kincaid}
+    David Kincaid, Ward Cheney. 
+    Analiza numeryczna, Warszawa, 2006..
+    \bibitem{Kincaid}
+    Wikipedia:
+    \texttt{https://pl.wikipedia.org/}
+\end{thebibliography} 
 
 \end{document}
